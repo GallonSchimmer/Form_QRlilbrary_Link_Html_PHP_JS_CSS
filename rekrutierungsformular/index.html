@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set, compatibility, and viewport settings -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekrutierungsformular für Limesurvey</title>
+	<meta name="author" content="Alejandro Gallón">
+    <meta name="description" content="Generate recruitment posters with QR codes for Limesurvey">
+    <meta name="keywords" content="Limesurvey, recruitment, QR code, TU Berlin">
+    <meta name="email" content="alejandrogallon@gmail.com">
+    <meta name="website" content="www.schimmercreative.com">
+    <meta name="date" content="2023-12-12">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+			z-index: 1; /* Ensure the title is in front of the logo */
+			position: relative; /* Set the position to relative */
+			
+        }
+
+        #usageInstructions {
+            margin-bottom: 20px;
+        }
+
+        #surveyForm {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #800000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+		
+		#logo1 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            /* width: 180px;*/  /* Set the desired width, was 150px before correction */
+			
+			max-width: 180px;
+			width: 100%;
+			
+            height: auto; /* Maintain aspect ratio */
+			margin: 10px;
+        }
+		
+		 @media (max-width: 750px) {
+            h1, h2 {
+                font-size: 1.5rem; /* Adjust the font size for smaller screens */
+				margin-top: 10px;
+			}
+			#logo1 {
+                margin-top: 50px; /* Adjusted top position to create space for the title */
+				max-width: 80px;
+			}
+			p {
+				margin-top: 10px; /* so the text does not get hidden by the logo */
+			}
+		}
+        
+    </style>
+</head>
+<body>
+
+	<div>
+	<!-- Logo -->
+    <img id="logo1" src='https://surveys.ak.tu-berlin.de/tmp/assets/ec5424f4/logo.png' alt='TU Berlin Logo'>
+	
+	<!-- Header Section -->
+    <h1>Rekrutierungsformular für Limesurvey</h1>
+	</div>
+	
+    
+    
+    <!-- Usage Instructions Section -->
+    <div id="usageInstructions">
+        <h2>Verwendung</h2>
+		
+		<p style="text-align: justify; margin-top:10px;">Mit diesem Formular können Sie sich ein Poster für die Rekrutierung von Befragten für Ihre Limesurvey-Befragung generieren, welches einen QR-Code enthält, der die Befragten automatisch zum Fragebogen in der richtigen Sprache leitet und dafür sorgt, dass Ihre Rekrutierungsleistung unter Ihrer Matrikelnummer verbucht wird. Damit das funktioniert, muss Ihre Limesurvey-Umfrage ein unsichtbares Fragefeld vom Typ „langer Freier Text“ mit dem Titel „m“ enthalten, außerdem müssen die Sprachen, für die Sie das Poster erstellen natürlich in der Umfrage konfiguriert sein. Mit der Nutzung des Formulas stimmen Sie zu, dass Ihre Matrikelnummer technisch kurzzeitig in der Browserzeile für die Befragten sichtbar werden wird. Ein direkte Zuordnung zu Ihrer Person wird dadurch jedoch nicht möglich. 
+Und so geht es:</p>
+        <ol>
+            <!-- Step-by-step usage instructions -->
+			
+            <li>Fügen Sie die Umfrage-ID und Ihre Matrikel in das entsprechende Feld im geöffneten Formular ein.</li>
+            <li>Wählen Sie die Sprache aus, die der QR-Code wählen soll.</li>
+            <li>Geben Sie den Titel Ihrer Befragung ein.</li>
+            <li>Klicken Sie auf den Button "QR-Codes generieren".</li>
+            <li>Die generierten QR-Codes werden auf einer neuen Seite unter dem Text  
+"[Survey Title]" mit dem Logo der TU Berlin und Audiokommunikation angezeigt. Diese Seite können Sie dann aus dem Browser heraus direkt als Poster ausdrucken.</li>
+        </ol>
+    </div>
+
+    <!-- Survey Form Section -->
+<form id="surveyForm" action="display_qr.php" method="post" target="_blank">
+    <!-- Input field for Matrikel number -->
+    <label for="matrikel">Matrikel:</label>
+    <input type="text" id="matrikel" name="matrikel" required>
+    
+    <!-- Input field for Umfrage-ID, Survey ID -->
+    <label for="umfrageId">Umfrage-ID:</label>
+    <input type="text" id="umfrageId" name="umfrageId" required>
+
+    <!-- Dropdown for language selection -->
+    <label for="sprache">Sprache:</label>
+    <select id="sprache" name="sprache" required>
+        <option value="de">Deutsch</option>
+        <option value="en">Englisch</option>
+        <option value="es">Spanisch</option>
+    </select>
+
+    <!-- Input field for survey title -->
+    <label for="umfrageTitel">Titel der Befragung:</label>
+    <input type="text" id="umfrageTitel" name="umfrageTitel" required>
+
+    <!-- Button to trigger QR code generation -->
+    <button type="submit">Poster mit QR generieren</button>
+</form>
+
+
+</body>
+</html>
